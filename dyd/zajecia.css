@@ -1,0 +1,122 @@
+html, body  {
+     background: white;
+     font-family: helvetica, lucida, arial, sans-serif; 
+     color: black
+  }
+
+A:link, A:visited {
+   color: rgb(153,35,18);
+   text-decoration: none;
+   font-weight: bold;
+   
+}
+
+A:active, A:focus, A:hover  {
+   color: rgb(166, 136, 91);
+   font-weight: bold;
+   text-decoration: underline;
+}
+
+A.logo {
+   color: rgb(204,204,204);
+   background: rgb(204,204,204);
+   text-decoration: none;
+}
+
+h3 {
+   margin-left: -4px;
+   color: rgb(0, 104, 159);
+}
+
+div.logo {
+   border-bottom: 1px solid black;
+   font-size: 130%;
+   text-align: left;
+   padding-bottom: 4px;
+   padding-top: 4px;
+   padding-left: 4px;
+   margin-bottom: 7px;
+   background: rgb(0,104,159);
+   color: white;
+   font-weight: bold;
+}
+
+.lewy {
+   background: rgb(246, 246, 246);
+   color: #000;
+   border-left:    2px solid white;
+   border-top:     2px solid white;
+   border-right:   2px solid #00689f;
+   border-bottom:  2px solid #00689f;
+   float: left;
+   width: 26%;
+   font-size: 70%;
+   border: 1px solid #000;
+   padding-left: 6px;
+   margin-right: 6px;
+        }
+.prawy {
+   background: rgb(246, 246, 246);
+   color: #000;
+   border-left:    2px solid white;
+   border-top:     2px solid white;
+   border-right:   2px solid #00689f;
+   border-bottom:  2px solid #00689f;
+   float: left;
+   width: 26%;
+   font-size: 110%;
+   border: 1px solid #000;
+   padding: 6px;
+   margin-left: 12px;
+   
+        }
+
+.srodek {
+   /* background: rgb(204,204,204); color: #000; */
+   float: left;
+   width: 70%;
+}
+
+div.info {
+   margin: 6px;
+}
+
+span.info {
+   color: red;
+   font-style: italic;
+   font-weight: bold;
+}
+
+div.item {
+
+   border-left:    1px solid black;
+   border-top:     1px solid black;
+   border-right:   2px solid rgb(0, 104, 159);
+   border-bottom:  2px solid rgb(0, 104, 159);
+   padding-left:   2ex;
+   padding-right:  2ex;
+   padding-top:    0.5em;
+   padding-bottom: 0.5em;
+   margin-top:     0em;
+   margin-bottom: 10px;
+   background: #fff;
+   /* border: 1px solid; */
+}
+
+#wyklady table, tr, td, th {
+   border: 1px solid black;
+   border-collapse: separate;
+   padding: 2px;
+}
+
+table.tabelka {
+   background: rgb(243,227,150);
+   border-collapse: separate;
+   border: 1px solid black;
+   empty-cells: hide;
+}
+
+td.tabelka {
+  border: 1px solid black;
+}
+

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="../prism.css" rel="stylesheet" />
+	<link href="../zajecia.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+	
+	<script src="../prism.js"></script>
+<div class="srodek">
+<div class="item">
+	<h3 id="wykład">Tablice jednowymiarowe</h3>
+		Tablice służą do przechowywania wielu wartości w jednej zmiennej, zamiast deklarowania oddzielnych zmiennych dla każdej wartości.
+
+		Aby <b>utworzyć tablicę</b>, należy zdefiniować typ danych (np int.) i podać nazwę tablicy, a następnie nawiasy kwadratowe a wewnątrz liczbę
+		elementów tablicy [n] .
+        
+		<pre><code class="language-C">
+			int tablicaLiczb[4];
+		</code></pre>
+
+		Aby wstawić do niego wartości, należy użyć listy rozdzielonej przecinkami w nawiasach klamrowych i upewnij się, że wszystkie wartości
+		mają ten sam typ danych (zauważ, że wtedy nie trzeba podawać rozmiaru tablicy):
+		
+		<pre><code class="language-C">
+			int tablicaLiczb[] = {2, 32, 512, 10024};
+		</code></pre>
+
+        Utworzyliśmy teraz zmienną tablicową, która przechowuje tablicę czterech liczb całkowitych. W pierwszym sposobie nie inicjowaliśmy tablicy konkretnymi
+		liczbami a w drugim już tak.
+	    <b>Dostęp do konkretnego elementu tablicy</b> można uzyskać poprzez odwołanie się do jego numeru indeksu.
+
+		Indeksy tablic zaczynają się od 0 : [0] jest pierwszym elementem. [1] jest drugim elementem itd.
+
+		To polecenie uzyskuje dostęp do wartości pierwszego elementu [0] w tablicaLiczb:
+		
+		<pre><code class="language-C">
+			#include &lt;stdio.h&gt;
+			int main() {
+				int tablicaLiczb[] = {2, 32, 512, 1024};
+				printf("%d", tablicaLiczb[1]);
+				return 0;
+				
+				// wyjście 32
+			}
+		</code></pre>
+		
+		Aby <b>zmienić wartość konkretnego elementu tablicy</b>, należy odwołać się do numeru indeksu:
+		
+		<pre><code class="language-C">
+			#include &lt;stdio.h&gt;
+			int main() {
+				int tablicaLiczb[] = {2, 32, 512, 1024};
+				tablicaLiczb[1] = 115
+				printf("%d", tablicaLiczb[1]);
+				return 0;
+				
+				// teraz na wyjściu jest 115 zamiast 32
+			}
+		</code></pre>
+		
+		Za pomocą pętli (np. for) można <b>przechodzić przez elementy tablicy</b>.
+		Poniższy program wypisuje wszystkie elementy tablicy tablicaLiczb:
+		
+		<pre><code class="language-C">
+			#include &lt;stdio.h&gt;
+			int main() {
+				int tablicaLiczb[3];
+				for (int i = 0; i < 4; i++) {
+					printf("%d ", tablicaLiczb[i]);
+				return 0;
+				
+				// wyjście 2 32 512 1024
+				// zwróć uwagę, że w formacie tekstowym po każdym elemencie tablicy wypisywana jest spacja 
+			}
+		</code></pre>
+		
+		Innym sposobem przypisania wartości elementom tablicy jest utworzenie tablicy i określenie jej rozmiaru
+		i późniejsze dodanie elementów:
+						
+		<pre><code class="language-C">
+			#include &lt;stdio.h&gt;
+			int main() {
+				// Deklaracja tablicy:
+				int tablicaLiczb[3];
+
+				// dodanie elementów bez pętli
+				tablicaLiczb[0] = 25;
+				tablicaLiczb[1] = 125;
+				tablicaLiczb[2] = 625;
+				
+				// dodanie elementów z pętlą
+				int x = 5;
+				for (int i = 0; i < 4; i++) {
+					x *= 5;
+					tablicaLiczb[i] = x;
+				}
+				return 0;								
+			}
+		</code></pre>
+		Zwróć uwagę, że czasem trzeba się trochę natrudzić, aby dodać w pętli odpowiednieelementy odpowiedniej wartości.
+		Oczywiście można je czytać ze standardowego wejścia (chociażby za pomocą funkcji scanf).
+		Dotychczas zapisywaliśmy rozmiar tablicy w warunku pętli np tak:  i < 4. Nie jest to dobre rozwiązanie, ponieważ
+		nie będzie uniwersalne i będzie działać tylko w przypadku tablic o określonym rozmiarze.
+        Jednak wykorzystując funkcję wyższego rzędu <b>sizeof</b> możemy przechwycić rozmiar tablicy i tworzyć pętle,
+		które będą działać na tablicach o dowolnym rozmiarze:
+		
+		<pre><code class="language-C">
+			#include &lt;stdio.h&gt;
+			int main() {
+				int tablicaLiczb[] = {25, 50, 75, 100};
+				int rozmiarTablicy = sizeof(tablicaLiczb) / sizeof(tablicaLiczb[0]);
+				for (i = 0; i < rozmiarTablicy; i++) {
+					printf("%d\n", tablicaLiczb[i]);
+				}
+				return 0;								
+			}
+		</code></pre>
+		W celu zilustrowania jak działać na tablicach, znajdźmy w dowolnej tablicy najmniejszy element:
+		<pre><code class="language-C">
+			#include &lt;stdio.h&gt;
+			int main() {
+				int tablicaLiczb[4] = {15, -2, 23, 65};
+				int minimum = tablicaLiczb[0];
+				//zastanów się, dlaczego do minimum wrzuciliśmy pierwszy element tablicy a nie np. wartość 0
+				int rozmiarTablicy = sizeof(tablicaLiczb) / sizeof(tablicaLiczb[0]);
+				for (int i = 1; i < rozmiarTablicy; i++) {
+					if(minimum > tablicaLiczb[i]){
+				//operator relacji można wykorzystać w prosty sposób do znalezienia maksimum, jak?
+						minimum = tablicaLiczb[i];
+					}
+				}
+				// zastanów się dlaczego pętlę rozpoczęliśmy w tym przykładzie od 1 a nie od 0?
+				printf("%d\n", minimum);
+				// na wyjściu jest -2
+				return 0;		
+			}
+		</code></pre>
+		
+		I jeszcze jeden przykład na zastosowanie tablic jednowymiarowych. Tym razem obliczmy średni wzrost
+		w pewnej grupie uczniów:
+		
+		<pre><code class="language-C">
+			#include &lt;stdio.h&gt;
+			int main() {
+				//deklarujemy zmienne
+				int wzrostUczniow[] = {144, 122, 181, 135, 196, 198, 155, 172, 178, 181, 164, 160, 139, 174};
+				float suma, srednia = 0;
+				int rozmiarTablicy = sizeof(wzrostUczniow) / sizeof(wzrostUczniow[0]);
+    
+				// iterujemy po tablicy jednocześnie licząc sumę jej elementów
+				for (int i = 0; i < rozmiarTablicy; i++) {
+					suma += wzrostUczniow[i];
+				}
+  
+				// obliczamy średnią wzrostu uczniów
+				srednia = suma / rozmiarTablicy;
+  
+				// wypisujemy wynik
+				printf("Średni wzrost wynosi : %.2f", srednia);
+  
+				//wyjście 164,21
+				//zastanów się, czy można uniknąć deklarowania jednej ze zmiennych suma i srednia
+				//aby rozwiązać zadanie?
+				return 0;	
+				}
+		</code></pre>
+		
+</div>
+</div>
+<div class="prawy">
+<div class="item">
+<h3 id="wykład">Listy zadań:</h3>
+</div>
+<div class="item">
+<h3 id="wykład">Słowniczek:</h3>
+<strong >tablica</strong> - kontener danych, w którym poszczególne komórki dostępne są za pomocą kluczy, zwanych indeksami, które najczęściej przyjmują wartości numeryczne<br/><br/>
+<strong >tablica statyczna</strong> - tablica, której rozmiar jest ustalony z góry<br/><br/>
+<strong>tablica dynamiczna</strong> - tablica, której rozmiar może się zmieniać w trakcie wykonywania programu<br/><br/>
+<strong>indeks</strong> - numer elementu tablicy, w którym znajduje się indeksowany element będący jej treścią (bardziej formalnie jest to przesunięcie wskaźnika tablicy na konkretny jej element)<br/><br/>
+<strong>sizeof</strong> - funkcja języka C/++, która umożliwia sprawdzenie, ile pamięci zawiera dany typ lub obiekt
+przykładowo:
+		<pre><code class="language-C" class = "minitext" style= "font-size:7px;">
+			#include &lt;stdio.h&gt;
+			int main()
+			{
+				int tablicaLiczb[] = {2, 32, 512, 10024};
+				printf("%d\n", (int)sizeof(tablicaLiczb[0]));    //wypisze 4
+				printf("%d\n", (int)sizeof(tablicaLiczb));       //wypisze 16
+				double liczbaRzeczywista = 5.12;
+				printf("%d\n", (int)sizeof(liczbaRzeczywista));  //wypisze 8
+				char znak = 'A';
+				printf("%d", (int)sizeof(znak));                 //wypisze 1
+			}
+		</code></pre>
+<br/>
+</div>	
+</div>	
+</body>
+</html>
